@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import Configuration from './components/Process/Configuration';
+import { BsPlusCircle } from 'react-icons/bs';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     const fetchData = async () => {
       const result = await fetch('profile/default');
       const data = await result.json();
+      data.confs = sortDataByStart(data.confs);
       setProfile(data);
     }
     fetchData()
@@ -20,8 +22,13 @@ function App() {
     setFilter(event.target.value);
   }
 
-  const filteredData = () => {
+  const sortDataByStart = (data) => {
+    return data.sort((a, b) => {
+      return a.start - b.start;
+    });
+  }
 
+  const filteredData = () => {
     if (!profile.confs)
       return [];
     if (filter === '') {
@@ -52,6 +59,11 @@ function App() {
               )
             })
           }
+        </div>
+        <div className="profile-bar">
+          <div className="profile-bar-button">
+            <button className='add-icon' ><BsPlusCircle /></button>
+          </div>
         </div>
       </div>
     </div>

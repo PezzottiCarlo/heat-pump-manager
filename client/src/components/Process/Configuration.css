@@ -1,4 +1,4 @@
-.configuration{
+.configuration {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -10,7 +10,7 @@
     height: 5rem;
 }
 
-.configuration-logs{
+.configuration-logs {
     display: flex;
     flex-direction: column;
     width: calc(100%-2px);
@@ -20,12 +20,12 @@
     border-radius: 0.5rem;
 }
 
-.configuration-logs p{
+.configuration-logs p {
     margin: 0;
     padding: 0.5rem;
 }
 
-.configuration div{
+.configuration div {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -34,35 +34,34 @@
 }
 
 /* firt div in configuration */
-.configuration div:first-child{
+.configuration div:first-child {
     margin-left: 1rem;
 }
 
-.configuration div:last-child{
+.configuration div:last-child {
     margin-right: 1rem;
 }
 
-.configuration div:not(:first-child){
+.configuration div:not(:first-child) {
     justify-content: center;
 }
 
-.big{
+
+
+
+.big {
     font-weight: bold;
 }
 
-.medium{
-    width:25% !important;
+.medium {
+    width: 25% !important;
 }
 
-.small{
-    width:10% !important;
+.small {
+    width: 10% !important;
 }
 
-.configuration-watch{
-    margin-right: 1rem;
-}
-
-.icon{
+.icon {
     cursor: pointer;
     font-size: 2rem;
     display: flex !important;
@@ -70,15 +69,15 @@
     margin: auto;
 }
 
-.icon:hover{
-    background-color: hsla(0,0%,100%,.1);
+.icon:hover {
+    background-color: hsla(0, 0%, 100%, .1);
 }
 
-.icon svg{
+.icon svg {
     height: 100%;
 }
 
-.small-icon{
+.small-icon {
     cursor: pointer;
     font-size: 1rem;
     display: flex !important;
@@ -86,46 +85,43 @@
     margin: auto;
 }
 
-.small-icon svg{
+.small-icon svg {
     height: 100%;
 }
 
-.monit{
+
+.monit {
     color: #97e9f7;
 }
 
-.bg-green{
-    background-color: #97e9f7;
-}
-
-.restart{
+.restart {
     color: #7daafe;
 }
 
-.stop{
+.stop {
     color: #c68cfc;
 }
 
-.online{
+.safe {
     color: #98ff83;
 }
 
-.changing{
+.warning {
     color: #ffd6a3;
 }
 
-.stopped{
+.danger {
     color: #ff8c8c;
 }
 
 @media only screen and (max-width: 900px) {
 
-    .big{
+    .big {
         font-weight: bold;
         width: 50% !important;
     }
 
-    .collapsible{
+    .collapsible {
         display: none !important;
     }
 }
