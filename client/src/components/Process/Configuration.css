@@ -1,0 +1,131 @@
+.configuration{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--secondary-color);
+    border-radius: 0.5rem;
+    height: 5rem;
+}
+
+.configuration-logs{
+    display: flex;
+    flex-direction: column;
+    width: calc(100%-2px);
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--secondary-color);
+    border-radius: 0.5rem;
+}
+
+.configuration-logs p{
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.configuration div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: 100%;
+}
+
+/* firt div in configuration */
+.configuration div:first-child{
+    margin-left: 1rem;
+}
+
+.configuration div:last-child{
+    margin-right: 1rem;
+}
+
+.configuration div:not(:first-child){
+    justify-content: center;
+}
+
+.big{
+    font-weight: bold;
+}
+
+.medium{
+    width:25% !important;
+}
+
+.small{
+    width:10% !important;
+}
+
+.configuration-watch{
+    margin-right: 1rem;
+}
+
+.icon{
+    cursor: pointer;
+    font-size: 2rem;
+    display: flex !important;
+    flex-direction: column;
+    margin: auto;
+}
+
+.icon:hover{
+    background-color: hsla(0,0%,100%,.1);
+}
+
+.icon svg{
+    height: 100%;
+}
+
+.small-icon{
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex !important;
+    flex-direction: column;
+    margin: auto;
+}
+
+.small-icon svg{
+    height: 100%;
+}
+
+.monit{
+    color: #97e9f7;
+}
+
+.bg-green{
+    background-color: #97e9f7;
+}
+
+.restart{
+    color: #7daafe;
+}
+
+.stop{
+    color: #c68cfc;
+}
+
+.online{
+    color: #98ff83;
+}
+
+.changing{
+    color: #ffd6a3;
+}
+
+.stopped{
+    color: #ff8c8c;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .big{
+        font-weight: bold;
+        width: 50% !important;
+    }
+
+    .collapsible{
+        display: none !important;
+    }
+}

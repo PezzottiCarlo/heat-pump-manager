@@ -1,27 +1,24 @@
 const express = require('express');
 const app = express();
-const rasp = require('./util/raspberry');
+//const rasp = require('./util/raspberry');
+const profile = new require('./util/profile');
 
-let raspberry = new rasp();
+//let raspberry = new rasp();
+let raspberry = ""
+
+app.use(express.json())
 
 app.listen(8085, () => {
     console.log('Server started on port 8085');
 })
 
-app.get('/:pin/:state', (req, res) => {
-    let pin = req.params.pin;
-    let state = req.query.state;
-
-    if (state === 'on') {
-        console.log('Turning on pin: ' + pin);
-        raspberry.turnOn(pin);
-        res.send('Turning on pin: ' + pin);
-    } else if (state === 'off') {
-        console.log('Turning off pin: ' + pin);
-        raspberry.turnOff(pin);
-        res.send('Turning off pin: ' + pin);
-    } else {
-        console.log('Invalid pin state: ' + state);
-        res.send('Invalid pin state: ' + state);
+app.get('/profile/:profile', (req, res) => {
+    let prf = req.params.profile;
+    let profileData = profile.getProfile(prf);
+    if (profileData) {
+        return res.json(profileData);
     }
+    return res.status(404).json({
+        error: 'Profile not found'
+    })
 })
