@@ -35,7 +35,7 @@ function App() {
       return profile.confs;
     }
     return profile.confs.filter(conf => {
-      return conf.start.toString().toLowerCase().includes(filter.toLowerCase()) || conf.end.toString().toLowerCase().includes(filter.toLowerCase());
+      return (conf.start/3600).toString().toLowerCase().includes(filter.toLowerCase()) || (conf.end/3600).toString().toLowerCase().includes(filter.toLowerCase());
     })
   }
 
