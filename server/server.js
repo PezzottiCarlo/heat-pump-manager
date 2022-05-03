@@ -7,6 +7,7 @@ const profile = new require('./util/profile');
 let raspberry = ""
 
 app.use(express.json())
+app.use(express.static('../build'));
 
 app.listen(8085, () => {
     console.log('Server started on port 8085');

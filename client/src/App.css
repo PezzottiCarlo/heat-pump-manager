@@ -87,4 +87,10 @@
   .profile-container {
     min-width: 100%;
   }
+  .profile-list{
+    width: 100%;
+  }
+  .profile-bar {
+    width: 100%;
+  }
 }
