@@ -114,6 +114,22 @@
     color: #ff8c8c;
 }
 
+.night {
+    color: #FEFCD7;
+}
+
+.sunrise {
+    color: #fff3a7;
+}
+
+.day {
+    color: #ffdb00;
+}
+
+.sunset{
+    color: #ffc293;
+}
+
 @media only screen and (max-width: 900px) {
 
     .big {

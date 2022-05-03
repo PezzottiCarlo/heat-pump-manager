@@ -31,13 +31,13 @@ const Configuration = ({ configuration }) => {
     const getIcon = (second) => {
         console.log(second);
         if (second > 6 * 3600 && second < 12 * 3600) {
-            return <BsSunrise />
+            return <BsSunrise className="sunrise"/>
         } else if (second > 12 * 3600 && second < 18 * 3600) {
-            return <BsSun />
+            return <BsSun className="day"/>
         } else if (second > 18 * 3600 && second < 24 * 3600) {
-            return <BsSunset />
+            return <BsSunset className="sunset"/>
         } else {
-            return <BsMoon />
+            return <BsMoon className="night"/>
         }
     }
 
