@@ -16,11 +16,6 @@ app.listen(8085, () => {
 app.get('/profile/:profile', (req, res) => {
     let profileName = req.params.profile;
     let profileData = profile.getProfile(profileName);
-    /*console.log(profile.addConf(profileName, {
-        start: 21*3600,
-        end: 22*3600,
-        state: false
-    }));*/
     if (profileData) {
         return res.json(profileData);
     }
@@ -29,9 +24,17 @@ app.get('/profile/:profile', (req, res) => {
     })
 })
 
+app.post('/profile/conf/add', (req, res) => {
+    let { profileName,start,end,state } = req.body;
+    let conf = {
+        start,
+        end,
+        state
+    }
+})
+
 app.post('/profile/conf/remove/', (req, res) => {
     let {index,profileName} = req.body;
-    console.log(index,profileName);
     let profileData = profile.removeConf(index,profileName);
     if (profileData) {
         return res.json({success: true});

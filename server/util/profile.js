@@ -16,12 +16,12 @@ module.exports = class Profile {
     static addConf(profileName, conf) {
         let profile = this.getProfile(profileName);
         if (!profile) return false;
-        if(!(conf.start && conf.end && conf.state)) return false;
+        if(!(conf.start && conf.end && conf.state!==null)) return false;
         if (this.timeIntervalExists(profile, conf.start, conf.end)) {
             return false;
         }
         profile.confs.push(conf);
-        this.exportProfiles(profileName, profile);
+        this.exportProfile(profileName, profile);
         return true;
     }
     

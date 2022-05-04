@@ -7,7 +7,7 @@ import Util from "./Util";
 
 const Configuration = ({ configuration,callback }) => {
 
-    const [hotCold, setHot] = useState((configuration.state && configuration.hot) ? true : (configuration.cold) ? false : false);
+    const [hotCold, setHot] = useState((configuration.state) ? configuration.hotCold : false);
     const [state, setState] = useState(configuration.state);
 
     const handleChange = (checked, val) => {

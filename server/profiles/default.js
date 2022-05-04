@@ -4,19 +4,21 @@ module.exports={
         {
             "start": 7200,
             "end": 14400,
-            "state": false
+            "hotCold":false,
+            "tempToReach": 20,
+            "state": true,
         },
         {
             "start": 28800,
             "end": 36000,
-            "hot": true,
+            "hotCold": true,
             "tempToReach": 50,
             "state": true
         },
         {
             "start": 36000,
             "end": 43200,
-            "cold": true,
+            "hotCold": true,
             "tempToReach": 20,
             "state": true
         },
