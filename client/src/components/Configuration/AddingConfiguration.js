@@ -27,19 +27,18 @@ const AddingConfiguration = ({ profileName, callback }) => {
     }
 
     const handleConfirm = async () => {
-        let startTmp = Util.hourToSecond(start);
-        let endTmp = Util.hourToSecond(end);
-        if (startTmp > endTmp) {
-            let result = await Util.add(startTmp, endTmp, hotCold, state, 0, profileName);
-            if (result) {
-                callback();
-            }
+        console.log(start,end)
+        let startTmp = (start===0)?0:Util.hourToSecond(start);
+        let endTmp = (end===0)?0:Util.hourToSecond(end);
+        let result = await Util.add(startTmp, endTmp, hotCold, state, 0, profileName);
+        if (result) {
+            callback();
         }
     }
 
     const customStyle = {
         "backgroundColor": "rgba(255,255,255,.1)",
-        "color":"var(--secondary-color)",
+        "color": "var(--secondary-color)",
         "border": "none",
         "borderRadius": ".25rem",
         "boxShadow": "none",

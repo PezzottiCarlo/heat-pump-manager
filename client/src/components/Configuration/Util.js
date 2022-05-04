@@ -40,15 +40,16 @@ class Util{
     }
 
     static getIcon(second){
-        if (second > 6 * 3600 && second < 12 * 3600) {
-            return <BsSunrise className="sunrise"/>
-        } else if (second > 12 * 3600 && second < 18 * 3600) {
-            return <BsSun className="day"/>
-        } else if (second > 18 * 3600 && second < 24 * 3600) {
-            return <BsSunset className="sunset"/>
-        } else {
+        console.log(second)
+        if(second >= 0 && second <= 6*3600){
             return <BsMoon className="night"/>
-        }
+        }else if (second > 6 * 3600 && second <= 12 * 3600) {
+            return <BsSunrise className="sunrise"/>
+        } else if (second > 12 * 3600 && second <= 18 * 3600) {
+            return <BsSun className="day"/>
+        } else if (second > 18 * 3600) {
+            return <BsSunset className="sunset"/>
+        } 
     }
 
     static secondToHour (second) {
