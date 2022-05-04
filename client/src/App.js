@@ -7,16 +7,25 @@ function App() {
 
   const [profile, setProfile] = useState([]);
   const [filter, setFilter] = useState('');
+  const [error, setError] = useState(null);
+  const [profileName, setProfileName] = useState("default");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetch('profile/default');
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const result = await fetch(`profile/${profileName}`);
+    if (result.status === 200) {
       const data = await result.json();
       data.confs = sortDataByStart(data.confs);
       setProfile(data);
+    } else if (result.status === 404) {
+      setError('Profilo non trovato');
+    } else if (result.status === 500) {
+      setError('Errore nel server');
     }
-    fetchData()
-  }, [])
+  }
 
   const filerChange = (event) => {
     setFilter(event.target.value);
@@ -35,14 +44,18 @@ function App() {
       return profile.confs;
     }
     return profile.confs.filter(conf => {
-      return (conf.start/3600).toString().toLowerCase().includes(filter.toLowerCase()) || (conf.end/3600).toString().toLowerCase().includes(filter.toLowerCase());
+      return (conf.start / 3600).toString().toLowerCase().includes(filter.toLowerCase()) || (conf.end / 3600).toString().toLowerCase().includes(filter.toLowerCase());
     })
+  }
+
+  const updateConfList = async () => {
+    await fetchData();
   }
 
 
   return (
     <div className="App">
-      <div className="profile-manage">
+      {(!error) ? <div className="profile-manage">
         <div className="profile-bar">
           <div className="profile-bar-search">
             <input value={filter} onChange={filerChange} type="text" placeholder="Search" />
@@ -51,10 +64,11 @@ function App() {
         <div className="profile-list">
           {
             filteredData().map((conf, index) => {
-              console.log(conf);
+              conf.index = index;
+              conf.profileName = profileName;
               return (
                 <div className="profile-container">
-                  <Configuration configuration={conf} />
+                  <Configuration callback={updateConfList} configuration={conf} />
                 </div>
               )
             })
@@ -65,7 +79,7 @@ function App() {
             <button className='add-icon' ><BsPlusCircle /></button>
           </div>
         </div>
-      </div>
+      </div> : <div className="error">{error}</div>}
     </div>
   );
 }

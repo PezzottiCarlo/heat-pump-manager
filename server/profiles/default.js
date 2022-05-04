@@ -1,36 +1,29 @@
-module.exports = {
-    timeout: 10*60*1000,
-    confs: [
+module.exports={
+    "timeout": 600000,
+    "confs": [
         {
-            start: 8*3600,
-            end: 10*3600,
-            hot: true,
-            tempToReach: 50,
-            state: true
+            "start": 7200,
+            "end": 14400,
+            "state": false
         },
         {
-            start: 10*3600,
-            end: 12*3600,
-            cold: true,
-            tempToReach: 20,
-            state: true
+            "start": 28800,
+            "end": 36000,
+            "hot": true,
+            "tempToReach": 50,
+            "state": true
         },
         {
-            start: 12*3600,
-            end: 13*3600,
-            state: false
+            "start": 36000,
+            "end": 43200,
+            "cold": true,
+            "tempToReach": 20,
+            "state": true
         },
         {
-            start: 2*3600,
-            end: 4*3600,
-            state: false
-        },
-        {
-            start: 18*3600,
-            end: 21*3600,
-            state: true,
-            hot:true,
-            tempToReach: 50
-        },
+            "start": 43200,
+            "end": 46800,
+            "state": false
+        }
     ]
 }

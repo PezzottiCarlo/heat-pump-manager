@@ -81,6 +81,16 @@
   background-color: hsla(0, 0%, 100%, .1);
 }
 
+.error{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
 
 /* in mobile screen */
 @media only screen and (max-width: 600px) {
