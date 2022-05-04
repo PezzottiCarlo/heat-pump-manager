@@ -25,12 +25,23 @@ app.get('/profile/:profile', (req, res) => {
 })
 
 app.post('/profile/conf/add', (req, res) => {
-    let { profileName,start,end,state } = req.body;
+    let { profileName,start,end,state,hotCold,tempToReach} = req.body;
     let conf = {
         start,
         end,
-        state
+        state,
+        hotCold,
+        tempToReach
     }
+    let result = profile.addConf(profileName, conf);
+    if (result) {
+        return res.json({
+            success: true
+        })
+    }
+    return res.status(500).json({
+        error: 'Error adding conf'
+    })
 })
 
 app.post('/profile/conf/remove/', (req, res) => {
