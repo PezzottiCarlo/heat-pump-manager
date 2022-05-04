@@ -3,11 +3,15 @@ import { useState, useEffect } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import Switch from "react-switch";
 import TimeField from 'react-simple-timefield';
+import Util from "./Util";
 
-const AddingConfiguration = () => {
+const AddingConfiguration = ({ profileName, callback }) => {
 
     const [hotCold, setHot] = useState(false);
     const [state, setState] = useState(true);
+
+    const [start, setStart] = useState(0);
+    const [end, setEnd] = useState(0);
 
     const handleChange = (checked, val) => {
         switch (val) {
@@ -22,21 +26,46 @@ const AddingConfiguration = () => {
         }
     }
 
+    const handleConfirm = async () => {
+        let startTmp = Util.hourToSecond(start);
+        let endTmp = Util.hourToSecond(end);
+        if (startTmp > endTmp) {
+            let result = await Util.add(startTmp, endTmp, hotCold, state, 0, profileName);
+            if (result) {
+                callback();
+            }
+        }
+    }
+
+    const customStyle = {
+        "backgroundColor": "rgba(255,255,255,.1)",
+        "color":"var(--secondary-color)",
+        "border": "none",
+        "borderRadius": ".25rem",
+        "boxShadow": "none",
+        "padding": ".25rem",
+        "fontSize": "1rem",
+        "fontWeight": "bold",
+        "width": "3rem",
+        "textAlign": "center",
+    }
+
     return (
         <div className="configuration-cnt">
             <div className="configuration">
                 <div className="configuration-title small icon">
+                    {Util.getIcon(start)}
                 </div>
                 <div className="configuration-hour big">
                     <div>
-                        <span>Dalle:</span><pre> </pre><TimeField
-                            onChange={(event, value) => { }}
-                            inputRef={(ref) => { }}
+                        <span>Dalle:</span><TimeField
+                            style={customStyle}
+                            onChange={(event, value) => { setStart(value) }}
                             colon=":"
                         />
-                        <span>alle:</span><pre> </pre><TimeField
-                            onChange={(event, value) => { }}
-                            inputRef={(ref) => { }}
+                        <span>alle:</span><TimeField
+                            style={customStyle}
+                            onChange={(event, value) => { setEnd(value) }}
                             colon=":"
                         />
                     </div>
@@ -53,7 +82,7 @@ const AddingConfiguration = () => {
                         <Switch uncheckedIcon={false} checkedIcon={false} onChange={(e) => { handleChange(e, 1) }} onColor={"#98ff83"} offColor={"#000"} checked={state} />
                     </label>
                 </div>
-                <div className="configuration-trash small icon safe">
+                <div className="configuration-trash small icon safe" onClick={handleConfirm}>
                     <BsCheckLg />
                 </div>
             </div>

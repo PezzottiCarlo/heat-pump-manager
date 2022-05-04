@@ -82,7 +82,7 @@ function App() {
           }
           <div className="profile-container">
             {
-              (addDialog) ? <AddingConfiguration /> : null
+              (addDialog) ? <AddingConfiguration callback={updateConfList} profileName={profileName}/> : null
             }
           </div>
         </div>
