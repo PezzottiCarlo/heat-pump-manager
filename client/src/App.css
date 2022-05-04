@@ -68,6 +68,11 @@
   margin-bottom: 1rem;
 }
 
+.profile-add-dialog{
+  width: 100%;
+  background-color: #cdd9e5;
+}
+
 .add-icon {
   font-size: 2rem;
   cursor: pointer;

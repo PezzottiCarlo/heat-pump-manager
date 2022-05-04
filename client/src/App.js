@@ -1,7 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import Configuration from './components/Process/Configuration';
 import { BsPlusCircle } from 'react-icons/bs';
+import Configuration from './components/Configuration/Configuration';
+import AddingConfiguration from './components/Configuration/AddingConfiguration';
 
 function App() {
 
@@ -9,6 +10,9 @@ function App() {
   const [filter, setFilter] = useState('');
   const [error, setError] = useState(null);
   const [profileName, setProfileName] = useState("default");
+
+  const [addDialog, setAddDialog] = useState(false);
+
 
   useEffect(() => {
     fetchData()
@@ -52,6 +56,9 @@ function App() {
     await fetchData();
   }
 
+  const handleAdd = async () => {
+    setAddDialog(!addDialog);
+  }
 
   return (
     <div className="App">
@@ -73,10 +80,15 @@ function App() {
               )
             })
           }
+          <div className="profile-container">
+            {
+              (addDialog) ? <AddingConfiguration /> : null
+            }
+          </div>
         </div>
         <div className="profile-bar">
           <div className="profile-bar-button">
-            <button className='add-icon' ><BsPlusCircle /></button>
+            <button className='add-icon' onClick={handleAdd} ><BsPlusCircle /></button>
           </div>
         </div>
       </div> : <div className="error">{error}</div>}

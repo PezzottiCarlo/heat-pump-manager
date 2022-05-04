@@ -1,14 +1,13 @@
 import "./Configuration.css";
 import { useState, useEffect } from "react";
+import { BsCheckLg } from "react-icons/bs";
 import Switch from "react-switch";
-import {BsTrash} from "react-icons/bs";
-import Util from "./Util";
+import TimeField from 'react-simple-timefield';
 
+const AddingConfiguration = () => {
 
-const Configuration = ({ configuration,callback }) => {
-
-    const [hotCold, setHot] = useState((configuration.state) ? configuration.hotCold : false);
-    const [state, setState] = useState(configuration.state);
+    const [hotCold, setHot] = useState(false);
+    const [state, setState] = useState(true);
 
     const handleChange = (checked, val) => {
         switch (val) {
@@ -23,20 +22,24 @@ const Configuration = ({ configuration,callback }) => {
         }
     }
 
-    const handleDelete = async () => {
-        const result = await Util.remove(configuration.index, configuration.profileName);
-        if (result.success) callback()   
-    }
-
-
     return (
         <div className="configuration-cnt">
             <div className="configuration">
                 <div className="configuration-title small icon">
-                    {Util.getIcon((configuration.start + configuration.end) / 2)}
                 </div>
                 <div className="configuration-hour big">
-                    <div>Dalle: {Util.secondToHour(configuration.start)} alle: {Util.secondToHour(configuration.end)}</div>
+                    <div>
+                        <span>Dalle:</span><pre> </pre><TimeField
+                            onChange={(event, value) => { }}
+                            inputRef={(ref) => { }}
+                            colon=":"
+                        />
+                        <span>alle:</span><pre> </pre><TimeField
+                            onChange={(event, value) => { }}
+                            inputRef={(ref) => { }}
+                            colon=":"
+                        />
+                    </div>
                 </div>
                 <div className="configuration-hot-cold big">
                     <span>Freddo/Caldo</span>
@@ -50,12 +53,12 @@ const Configuration = ({ configuration,callback }) => {
                         <Switch uncheckedIcon={false} checkedIcon={false} onChange={(e) => { handleChange(e, 1) }} onColor={"#98ff83"} offColor={"#000"} checked={state} />
                     </label>
                 </div>
-                <div onClick={handleDelete} className="configuration-trash small icon danger">
-                    <BsTrash />
+                <div className="configuration-trash small icon safe">
+                    <BsCheckLg />
                 </div>
             </div>
         </div>
     );
 }
 
-export default Configuration;
+export default AddingConfiguration;
