@@ -40,7 +40,6 @@ class Util{
     }
 
     static getIcon(second){
-        console.log(second)
         if(second >= 0 && second <= 6*3600){
             return <BsMoon className="night"/>
         }else if (second > 6 * 3600 && second <= 12 * 3600) {

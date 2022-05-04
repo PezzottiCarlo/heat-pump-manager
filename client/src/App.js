@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef} from 'react';
 import { BsPlusCircle } from 'react-icons/bs';
 import Configuration from './components/Configuration/Configuration';
 import AddingConfiguration from './components/Configuration/AddingConfiguration';
@@ -12,7 +12,7 @@ function App() {
   const [profileName, setProfileName] = useState("default");
 
   const [addDialog, setAddDialog] = useState(false);
-
+  const addDialogRef = useRef();
 
   useEffect(() => {
     fetchData()
@@ -58,6 +58,10 @@ function App() {
 
   const handleAdd = async () => {
     setAddDialog(!addDialog);
+    //to be refactored
+    setTimeout(() => {
+      addDialogRef.current.scrollIntoView({ behavior: 'smooth' });
+    } , 1);
   }
 
   return (
@@ -74,13 +78,13 @@ function App() {
               conf.index = index;
               conf.profileName = profileName;
               return (
-                <div className="profile-container">
+                <div  className="profile-container">
                   <Configuration callback={updateConfList} configuration={conf} />
                 </div>
               )
             })
           }
-          <div className="profile-container">
+          <div className="profile-container" ref={addDialogRef}>
             {
               (addDialog) ? <AddingConfiguration callback={updateConfList} profileName={profileName}/> : null
             }
