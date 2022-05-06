@@ -1,11 +1,19 @@
 const express = require('express');
-const app = express();
-//const rasp = require('./util/raspberry');
+
+const config = require('./config/config');
+const rasp = require('./util/raspberry');
 const profile = new require('./util/profile');
 
-//let raspberry = new rasp();
-let raspberry = ""
+let currentProfile = profile.getProfile('default');
+const app = express();
+const raspberry = new rasp(config.debug, currentProfile, (info) => {
+    let { state,hotCold,tempToReach } = info;
+    let now = new Date();
+    console.log(`Alle ${now.getHours()}:${now.getMinutes()} ${state ? 'attivo' : 'spento'} ${hotCold ? 'caldo' : 'freddo'} e bisogna raggiungere ${tempToReach}°C`);
+});
 
+
+raspberry.start();
 app.use(express.json())
 app.use(express.static('../build'));
 
@@ -54,3 +62,9 @@ app.post('/profile/conf/remove/', (req, res) => {
         error: 'Error removing profile'
     })
 })
+
+if(config.debug){
+    app.get('/debug', (req, res) => {
+
+    })
+}

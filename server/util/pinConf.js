@@ -1,5 +1,5 @@
 let Gpio = require('onoff').Gpio;
 module.exports = {
-    hot: new Gpio(4, 'out'),
-    cold: new Gpio(17, 'out'),
+    hot: { pin: new Gpio(4, 'out'), state: false },
+    cold: { pin: new Gpio(17, 'out'), state: false }
 }
