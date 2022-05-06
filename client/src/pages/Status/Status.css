@@ -1,0 +1,33 @@
+.status-page{
+    width: 100%;
+    height: 100%;
+}
+
+.status-manage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+}
+
+.icon{
+    font-size: 4rem;
+}
+
+.hot{
+    color: #ff7f7f;
+}
+
+.cold{
+    color: #7faaff;
+}
+
+.active{
+    color: #a7ff84;
+}
+
+.inactive{
+    color: rgba(205,217,229,0.3);
+}
