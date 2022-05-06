@@ -2,15 +2,8 @@ module.exports={
     "timeout": 600000,
     "confs": [
         {
-            "start": 63060,
-            "end": 63120,
-            "state": true,
-            "hotCold": false,
-            "tempToReach": 0
-        },
-        {
-            "start": 63120,
-            "end": 63180,
+            "start": 63780,
+            "end": 63840,
             "state": true,
             "hotCold": true,
             "tempToReach": 0

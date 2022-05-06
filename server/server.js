@@ -32,6 +32,14 @@ app.get('/profile/:profile', (req, res) => {
     })
 })
 
+app.get('/state', (req, res) => {
+    let state = {
+        hot: raspberry.getState('hot'),
+        cold: raspberry.getState('cold')
+    }
+    return res.json(state);
+})
+
 app.post('/profile/conf/add', (req, res) => {
     let { profileName,start,end,state,hotCold,tempToReach} = req.body;
     let conf = {

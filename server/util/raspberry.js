@@ -54,9 +54,11 @@ module.exports = class Raspberry {
         this.intervall = setInterval(() => {
             let now = new Date();
             let nowTime = now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+            let found = false;
             for (let i = 0; i < this.profile.confs.length; i++) {
                 let conf = this.profile.confs[i];
                 if ((nowTime > conf.start && nowTime <= conf.end)) {
+                    found = true;
                     if(start!=conf.start && end!=conf.end){
                         start = conf.start;
                         end = conf.end;
@@ -65,6 +67,7 @@ module.exports = class Raspberry {
                             else this.turnOn('cold');                
                         }else{
                             this.turnOff('hot');
+                            this.turnOff('cold');
                         }
                         this.callback({
                             state: this.getState((conf.hotCold)?'hot':'cold'),
@@ -73,6 +76,10 @@ module.exports = class Raspberry {
                         })
                     }   
                 }
+            }
+            if(!found){
+                this.turnOff('hot');
+                this.turnOff('cold');
             }
         }, 1000);
     }
