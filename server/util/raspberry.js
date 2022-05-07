@@ -80,6 +80,8 @@ module.exports = class Raspberry {
             if(!found){
                 this.turnOff('hot');
                 this.turnOff('cold');
+                start = -1;
+                end = -1;
             }
         }, 1000);
     }
