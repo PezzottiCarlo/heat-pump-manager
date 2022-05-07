@@ -9,16 +9,22 @@ const Configuration = ({ configuration, callback }) => {
     const [hotCold, setHot] = useState((configuration.state) ? configuration.hotCold : false);
     const [state, setState] = useState(configuration.state);
 
-    const handleChange = (checked, val) => {
+    const handleChange = async (checked, val) => {
+        let result;
         switch (val) {
             case 0:
                 setHot(checked);
+                result = await Util.update(configuration.index, configuration.start, configuration.end, checked, state, configuration.tempToReach, configuration.profileName);
                 break;
             case 1:
                 setState(checked);
+                result = await Util.update(configuration.index, configuration.start, configuration.end, hotCold, checked, configuration.tempToReach, configuration.profileName);
                 break;
             default:
                 break;
+        }
+        if (result.success) {
+            //updated
         }
     }
 

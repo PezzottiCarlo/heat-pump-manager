@@ -71,6 +71,23 @@ app.post('/profile/conf/remove/', (req, res) => {
     })
 })
 
+app.post('/profile/conf/update/', (req, res) => {
+    let {index,start,end,state,hotCold,tempToReach,profileName} = req.body;
+    let conf = {
+        start,
+        end,
+        state,
+        hotCold,
+        tempToReach
+    }
+    console.log(conf);
+    let result = profile.updateConf(profileName,index, conf);
+    if (result) {
+        return res.json({success: true});
+    }
+    return res.status(500).json({error: 'Error updating profile'});
+})
+
 if(config.debug){
     app.get('/debug', (req, res) => {
 

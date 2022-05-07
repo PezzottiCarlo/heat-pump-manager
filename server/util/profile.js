@@ -25,6 +25,17 @@ module.exports = class Profile {
         return true;
     }
     
+    static updateConf(profileName, profileIndex, conf) {
+        let profile = this.getProfile(profileName);
+        if (!profile) return false;
+        if (profile.confs.length > profileIndex) {
+            if(!(conf.start!==null && conf.end!==null && conf.state!==null)) return false;
+            //if (this.timeIntervalExists(profile, conf.start, conf.end)) return false;
+            profile.confs[profileIndex] = conf;
+            this.exportProfile(profileName, profile);
+            return true;
+        }
+    }
 
     static removeConf(profileIndex, profileName) {
         let profile = this.getProfile(profileName);

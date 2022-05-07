@@ -39,6 +39,28 @@ class Util{
         return false;
     }
 
+    static async update(index,start,end,hotCold,state,tempToReach,profileName){
+        let body = {
+            index,
+            start,
+            end,
+            hotCold,
+            state,
+            tempToReach,
+            profileName
+        }
+        let res = await fetch('/profile/conf/update/',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+        if(res.status === 200)
+            return (await res.json());
+        return false;
+    }
+
     static getIcon(second){
         if(second >= 0 && second <= 6*3600){
             return <BsMoon className="night"/>

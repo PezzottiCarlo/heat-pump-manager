@@ -4,8 +4,8 @@ module.exports={
         {
             "start": 66600,
             "end": 68400,
-            "state": true,
-            "hotCold": true,
+            "state": false,
+            "hotCold": false,
             "tempToReach": 0
         }
     ]
