@@ -1,5 +1,5 @@
 module.exports = class Raspberry {
-    constructor(debug = false,profile,callback) {
+    constructor(debug = false, profile, callback) {
         this.debug = debug;
         this.callback = callback;
         this.profile = profile;
@@ -13,11 +13,11 @@ module.exports = class Raspberry {
             this.pins = require('./pinConf');
     }
 
-    setProfile(profile){
+    setProfile(profile) {
         this.profile = profile;
     }
 
-    setCallback(callback){
+    setCallback(callback) {
         this.callback = callback;
     }
 
@@ -39,54 +39,53 @@ module.exports = class Raspberry {
         return false;
     }
 
-    getState(pinName){
-        if(this.pins[pinName]){
+    getState(pinName) {
+        if (this.pins[pinName]) {
             return this.pins[pinName].state;
         }
         return undefined;
     }
 
-    
 
-    start(){
-        let start=-1;
-        let end=-1;
+
+    start() {
+        let currentConf = {}
         this.intervall = setInterval(() => {
             let now = new Date();
-            let nowTime = now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+            let nowTime = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
             let found = false;
             for (let i = 0; i < this.profile.confs.length; i++) {
                 let conf = this.profile.confs[i];
                 if ((nowTime > conf.start && nowTime <= conf.end)) {
                     found = true;
-                    if(start!=conf.start && end!=conf.end){
-                        start = conf.start;
-                        end = conf.end;
-                        if(conf.state){
-                            if(conf.hotCold)this.turnOn('hot');
-                            else this.turnOn('cold');                
-                        }else{
+                    if (currentConf.state != conf.state || currentConf.hotCold != conf.hotCold || currentConf.start != conf.start || currentConf.end != conf.end || currentConf.tempToReach != conf.tempToReach) {
+                        currentConf = conf;
+                        this.turnOff('hot');
+                        this.turnOff('cold');
+                        if (conf.state) {
+                            if (conf.hotCold) this.turnOn('hot');
+                            else this.turnOn('cold');
+                        } else {
                             this.turnOff('hot');
                             this.turnOff('cold');
                         }
                         this.callback({
-                            state: this.getState((conf.hotCold)?'hot':'cold'),
+                            state: this.getState((conf.hotCold) ? 'hot' : 'cold'),
                             hotCold: conf.hotCold,
                             tempToReach: conf.tempToReach
                         })
-                    }   
+                    }
                 }
             }
-            if(!found){
+            if (!found) {
                 this.turnOff('hot');
                 this.turnOff('cold');
-                start = -1;
-                end = -1;
+                currentConf = {};
             }
         }, 1000);
     }
 
-    stop(){
+    stop() {
         clearInterval(this.intervall);
     }
 }

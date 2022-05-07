@@ -80,7 +80,6 @@ app.post('/profile/conf/update/', (req, res) => {
         hotCold,
         tempToReach
     }
-    console.log(conf);
     let result = profile.updateConf(profileName,index, conf);
     if (result) {
         return res.json({success: true});
