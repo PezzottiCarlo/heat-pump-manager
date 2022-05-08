@@ -22,7 +22,6 @@ function App() {
   }
 
   return (
-    
     <div className='App'>
       <button className='debug-button' onClick={()=>setPage((page==0)?1:0)}>Cambia pagina</button>
       {getCurrentPage()}

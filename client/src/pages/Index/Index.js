@@ -1,8 +1,9 @@
 import './Index.css';
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BsPlusCircle } from 'react-icons/bs';
 import Configuration from '../../components/Configuration/Configuration';
 import AddingConfiguration from '../../components/Configuration/AddingConfiguration';
+import Loading from '../Loading/Loading';
 
 const Index = () => {
 
@@ -11,6 +12,7 @@ const Index = () => {
   const [error, setError] = useState(null);
   const [profileName, setProfileName] = useState("default");
 
+  const [loading, setLoading] = useState(true);
   const [addDialog, setAddDialog] = useState(false);
   const addDialogRef = useRef();
 
@@ -29,6 +31,7 @@ const Index = () => {
     } else if (result.status === 500) {
       setError('Errore nel server');
     }
+    setLoading(false);
   }
 
   const filerChange = (event) => {
@@ -61,9 +64,10 @@ const Index = () => {
     //to be refactored
     setTimeout(() => {
       addDialogRef.current.scrollIntoView({ behavior: 'smooth' });
-    } , 1);
+    }, 1);
   }
 
+  if (loading) return <Loading />
   return (
     <div className='index-page'>
       {(!error) ? <div className="profile-manage">
@@ -78,7 +82,7 @@ const Index = () => {
               conf.index = index;
               conf.profileName = profileName;
               return (
-                <div  className="profile-container">
+                <div className="profile-container">
                   <Configuration callback={updateConfList} configuration={conf} />
                 </div>
               )
@@ -86,7 +90,7 @@ const Index = () => {
           }
           <div className="profile-container" ref={addDialogRef}>
             {
-              (addDialog) ? <AddingConfiguration callback={updateConfList} profileName={profileName}/> : null
+              (addDialog) ? <AddingConfiguration callback={updateConfList} profileName={profileName} /> : null
             }
           </div>
         </div>
