@@ -52,8 +52,8 @@ const AddingConfiguration = ({ profileName, callback }) => {
     return (
         <div className="configuration-cnt">
             <div className="configuration">
-                <div className="configuration-title small icon">
-                    {Util.getIcon(start)}
+                <div className="configuration-title small small-icon">
+                    {Util.getIcon(Util.hourToSecond(start))}
                 </div>
                 <div className="configuration-hour big">
                     <div>
@@ -81,7 +81,7 @@ const AddingConfiguration = ({ profileName, callback }) => {
                         <Switch uncheckedIcon={false} checkedIcon={false} onChange={(e) => { handleChange(e, 1) }} onColor={"#98ff83"} offColor={"#000"} checked={state} />
                     </label>
                 </div>
-                <div className="configuration-trash small icon safe" onClick={handleConfirm}>
+                <div className="configuration-trash small small-icon safe" onClick={handleConfirm}>
                     <BsCheckLg />
                 </div>
             </div>

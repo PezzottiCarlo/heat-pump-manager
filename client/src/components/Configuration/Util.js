@@ -66,9 +66,9 @@ class Util{
             return <BsMoon className="night"/>
         }else if (second > 6 * 3600 && second <= 12 * 3600) {
             return <BsSunrise className="sunrise"/>
-        } else if (second > 12 * 3600 && second <= 18 * 3600) {
+        } else if (second > 12 * 3600 && second <= 17 * 3600) {
             return <BsSun className="day"/>
-        } else if (second > 18 * 3600) {
+        } else if (second > 17 * 3600) {
             return <BsSunset className="sunset"/>
         } 
     }
@@ -80,6 +80,9 @@ class Util{
     }
 
     static hourToSecond (hour) {
+        if (typeof hour === "number") {
+            return hour
+        }
         let hourSplit = hour.split(":");
         return parseInt(hourSplit[0]) * 3600 + parseInt(hourSplit[1]) * 60;
     }

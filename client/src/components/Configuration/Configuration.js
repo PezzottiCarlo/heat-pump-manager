@@ -37,7 +37,7 @@ const Configuration = ({ configuration, callback }) => {
     return (
         <div className="configuration-cnt">
             <div className="configuration">
-                <div className="configuration-title small icon">
+                <div className="configuration-title small small-icon">
                     {Util.getIcon((configuration.start + configuration.end) / 2)}
                 </div>
                 <div className="configuration-hour big">
@@ -55,7 +55,7 @@ const Configuration = ({ configuration, callback }) => {
                         <Switch uncheckedIcon={false} checkedIcon={false} onChange={(e) => { handleChange(e, 1) }} onColor={"#98ff83"} offColor={"#000"} checked={state} />
                     </label>
                 </div>
-                <div onClick={handleDelete} className="configuration-trash small icon danger">
+                <div onClick={handleDelete} className="configuration-trash small small-icon danger">
                     <BsTrash />
                 </div>
             </div>

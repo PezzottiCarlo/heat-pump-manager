@@ -79,7 +79,7 @@
 
 .small-icon {
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.5rem;
     display: flex !important;
     flex-direction: column;
     margin: auto;
